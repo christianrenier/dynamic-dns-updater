@@ -21,7 +21,7 @@ class Cacher:
 		# one and set IP value to an informative string
 		else:
 			file = open(self.cache_location, 'w')
-			self.ip = 'initial state'
+			self.ip = 'Initial state'
 		file.close()
 
 	def get_ip(self):
