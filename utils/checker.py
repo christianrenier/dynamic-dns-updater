@@ -6,7 +6,6 @@ class Checker:
 	"""Gets your public-facing IP from a website."""
 
 	def __init__(self, list_location):
-		self.errors = []
 		self.list_location = list_location
 		self.list = []
 		self.init_list()

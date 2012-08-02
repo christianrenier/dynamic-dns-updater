@@ -5,7 +5,6 @@ class Cacher:
 	"""Reads and writes IP values to a cache file."""
 
 	def __init__(self, cache_location):
-		self.errors = []
 		self.cache_location = cache_location
 		self.ip = None
 		self.init_ip()
