@@ -6,7 +6,7 @@ import utils
 # Load configuration options from config file
 parser = ConfigParser.SafeConfigParser()
 parser.read(os.path.dirname(__file__) + '/config.cfg')
-write_errors = parser.getboolean('logging', 'log_error')
+write_errors = parser.getboolean('logging', 'log_errors')
 
 # Create a Logger object to log chosen events
 log_file_location = parser.get('general', 'log_file')
@@ -17,7 +17,7 @@ ip_cache_location = parser.get('general', 'ip_cache_file')
 try:
 	cacher = utils.cacher.Cacher(ip_cache_location)
 except:
-	if write_errors: logger.log_error('Problem reading from IP cache file.')
+	if write_errors: logger.log_error('read_cache')
 	sys.exit()
 old_ip = cacher.get_ip()
 
@@ -27,7 +27,7 @@ checker = utils.checker.Checker(site_list_location)
 try:
 	current_ip = checker.get_ip()
 except:
-	if write_errors: logger.log_error('Problem checking your current IP address.')
+	if write_errors: logger.log_error('check_ip')
 	sys.exit()
 
 # Exit this script if IP address has not changed
@@ -43,14 +43,14 @@ updater = utils.updater.Updater(update_url)
 try:
 	updater.update_dns()
 except:
-	if write_errors: logger.log_error('Problem updating your Dynamic DNS.')
+	if write_errors: logger.log_error('update_dns')
 	sys.exit()
 
 # Store current public IP in the cache file
 try:
 	cacher.store_ip(current_ip)
 except:
-	if write_errors: logger.log_error('Problem writing to IP cache file.')
+	if write_errors: logger.log_error('write_cache')
 	sys.exit()
 	
 # Log that the address was updated if enabled in config
