@@ -23,6 +23,9 @@ current_ip = checker.get_ip()
 
 # Exit this script if IP address has not changed
 if old_ip == current_ip:
+	# Log that the address was not updated if enabled in config
+	if parser.getboolean('logging', 'log_no_changes'):
+		logger.log_no_change(old_ip)
 	sys.exit()
 
 # Update Dynamic DNS service with current public IP
@@ -32,3 +35,6 @@ updater.update_dns()
 
 # Store current public IP in the cache file
 cacher.store_ip(current_ip)
+# Log that the address was updated if enabled in config
+if parser.getboolean('logging', 'log_changes'):
+	logger.log_change(old_ip, current_ip)
