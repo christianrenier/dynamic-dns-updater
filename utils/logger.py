@@ -16,6 +16,11 @@ class Logger:
 		file.close()
 
 	def log_error(self, error_message):
+
+		"""Adds the event of an error occurrence to the log file."""
+		now = self.get_datetime()
+		message = "%s: Error - %s\n" % (now, error_message)
+		self.append_message(message)
 		return
 
 	def log_no_change(self, ip):
