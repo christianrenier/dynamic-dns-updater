@@ -2,6 +2,8 @@ import datetime
 
 class Logger:
 
+	"""Writes events and time of occurrence to a log file."""
+
 	def __init__(self, log_location):
 		self.log_location = log_location
 
@@ -17,11 +19,15 @@ class Logger:
 		return
 
 	def log_no_change(self, ip):
+
+		"""Adds the event of no IP change to the log file."""
 		now = self.get_datetime()
 		message = "%s: %s remains unchanged.\n" % (now, ip)
 		self.append_message(message)
 
 	def log_change(self, previous_ip, new_ip):
+
+		"""Adds the event of an IP update to the log file."""
 		now = self.get_datetime()
 		message = "%s: %s has been updated to %s.\n" % (now, previous_ip, new_ip)
 		self.append_message(message)
