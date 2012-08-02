@@ -2,6 +2,8 @@ import os
 
 class Cacher:
 
+	"""Reads and writes IP values to a cache file."""
+
 	def __init__(self, cache_location):
 		self.errors = []
 		self.cache_location = cache_location
