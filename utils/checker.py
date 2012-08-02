@@ -21,6 +21,8 @@ class Checker:
 
 	def get_ip(self):
 
+		"""Returns IP value retrieved from the internet."""
+
 		# Opens a connection to a random site
 		# in the list
 		random_site = random.choice(self.list)

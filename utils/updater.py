@@ -10,7 +10,7 @@ class Updater:
 
 	def update_dns(self):
 
-		# Simply connects to a URL, then disconnects
+		"""Connects to the update URL, then disconnects."""
 		request = urllib.urlopen(self.update_url)
 		request.close()
 		

@@ -26,10 +26,13 @@ class Cacher:
 
 	def get_ip(self):
 
-		# Returns the currently set IP value
+		"""Returns the currently set IP value."""
 		return self.ip
 
 	def store_ip(self, ip):
+
+		"""Writes the sent IP to a cache file and sets
+		it as the current IP value."""
 
 		# Writes sent IP address to file
 		file = open(self.cache_location, 'w')
