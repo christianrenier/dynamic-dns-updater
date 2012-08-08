@@ -14,6 +14,7 @@ A tool for updating a Dynamic DNS service if your IP has changed. Designed to be
 * User definable logging of errors.
 * Updates any Dynamic DNS service which relies on simply visiting a URL.
 * Usable under any operating system with Python installed.
+* Support for multiple update URLs.
 
 Usage
 -----
@@ -31,9 +32,13 @@ Edit `config.cfg` with the following:
 
 #### Your update URL
 
-Paste the update URL given to you by your Dynamic DNS provider, as shown.
+Paste the update URL given to you by your Dynamic DNS provider.
 
-	update_url = http://freedns.afraid.org/dynamic/update.php?yourUniqueUpdateUrl
+	update_urls = http://freedns.afraid.org/dynamic/update.php?yourUniqueUpdateUrl
+	
+Multiple URLs should all be on the same line, separated only by a comma.
+
+	update_urls = http://freedns.afraid.org/dynamic/update.php?yourUniqueUpdateUrl,http://www.example.com/anotherUpdateUrl
 
 #### File locations
 
