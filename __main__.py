@@ -38,8 +38,8 @@ if old_ip == current_ip:
 	sys.exit()
 
 # Update Dynamic DNS service with current public IP
-update_url = parser.get('general', 'update_url')
-updater = utils.updater.Updater(update_url)
+update_urls = parser.get('general', 'update_urls')
+updater = utils.updater.Updater(update_urls)
 try:
 	updater.update_dns()
 except:
