@@ -20,6 +20,8 @@ receiver = parser.get('mailing', 'receiver_address')
 mail_error = parser.getboolean('mailing', 'send_errors')
 mail_change = parser.getboolean('mailing', 'send_changes')
 
+# Name of this tool
+tool_name = 'Dynamic DNS Updater'
 # Tracks if a logger was created
 logger = False
 # Tracks if a mailer was created
@@ -41,6 +43,7 @@ def error_processor(code):
 	if write_error and logger: logger.log_error(error_messages[code])
 	if mail_error and mailer:
 		mailer.send_error(receiver, error_messages[code])
+	print '%s: Error - %s' % (tool_name, error_messages[code])
 	sys.exit()
 
 
@@ -83,12 +86,14 @@ except: error_processor('check_ip')
 if old_ip == current_ip:
 	if write_unchanged:
 		logger.log_no_change(old_ip)
+		print '%s: %s remains unchanged.' % (tool_name, old_ip)
 		sys.exit()
 
 try: updater.update_dns()
 except: error_processor('update_dns')
 
 cacher.store_ip(current_ip)
+print '%s: %s has been updated to %s' % (tool_name, old_ip, current_ip)
 if write_change: logger.log_change(old_ip, current_ip)
 if mail_change and mailer:
 	mailer.send_change(receiver, old_ip, current_ip)
