@@ -6,6 +6,11 @@ class Logger:
 
 	def __init__(self, log_location):
 		self.log_location = log_location
+		self.test_log_file()
+
+	def test_log_file(self):
+		file = open(self.log_location, 'a')
+		file.close()
 
 	def get_datetime(self):
 		return datetime.datetime.now().ctime()
