@@ -20,9 +20,9 @@ receiver = parser.get('mailing', 'receiver_address')
 mail_error = parser.getboolean('mailing', 'send_errors')
 mail_change = parser.getboolean('mailing', 'send_changes')
 
-# Tracks if creating a logger failed
+# Tracks if a logger was created
 logger = False
-# Tracks if creating a mailer failed
+# Tracks if a mailer was created
 mailer = False
 
 # Dictionary of error codes and their corresponding messages
@@ -36,28 +36,29 @@ error_messages = {
 			'update_dns' : 'Problem updating your Dynamic DNS.'
 			}
 
-# Handles logging and mailing of errors as enabled by the user
+# Handles logging and mailing of errors, as enabled by the user
 def error_processor(code):
 	if write_error and logger: logger.log_error(error_messages[code])
-	if mail_error and mailer: mailer.send_error(receiver, error_messages[code])
+	if mail_error and mailer:
+		mailer.send_error(receiver, error_messages[code])
 	sys.exit()
 
 
 
 ## Create instances of utility classes ##
 
-# Only create logger object if user has chosen to log any events
+# Only create logger object if the user has chosen to log an event
 if write_error or write_change or write_unchanged:
 	try: logger = utils.logger.Logger(general['log_file'])
 	except: logger = False
-# Only create mailer object if user has chosen to mail any events
+# Only create mailer object if user has chosen to mail an event
 if mail_error or mail_change:
 	try: mailer = utils.mailer.Mailer(
 		gmail_account['gmail_user'],
 		gmail_account['gmail_password'])
 	except: error_processor('invalid_login')
-# Notify user by mail that initializing a logger has failed if they
-# enabled any logging
+# Notify user by mail that initializing a logger has failed, if they
+# enabled any logging of events
 if not logger and mailer:
 	if write_error or write_change or write_unchanged:
 		error_processor('logger_missing')
@@ -89,4 +90,5 @@ except: error_processor('update_dns')
 
 cacher.store_ip(current_ip)
 if write_change: logger.log_change(old_ip, current_ip)
-if mail_change and mailer: mailer.send_change(receiver, old_ip, current_ip)
+if mail_change and mailer:
+	mailer.send_change(receiver, old_ip, current_ip)
