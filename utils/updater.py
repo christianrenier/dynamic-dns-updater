@@ -8,6 +8,11 @@ class Updater:
 		
 		# Make a list out of the string split by comma
 		self.update_urls = update_urls.split(',')
+		self.check_url()
+
+	def check_url(self):
+		if not self.update_urls:
+			raise Exception
 
 	def update_dns(self):
 
