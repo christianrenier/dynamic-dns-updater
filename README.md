@@ -61,7 +61,7 @@ You can also choose what events you want written to the log file by marking them
 	[logging]
 	log_errors = true
 	log_changes = true
-	log_no_changes = false
+	log_unchanged = false
 
 
 Contributing
