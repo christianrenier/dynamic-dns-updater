@@ -9,6 +9,13 @@ class Mailer:
 		self.username = username
 		self.password = password
 		self.from_address = username + '@gmail.com'
+		self.test_credentials()
+
+	def test_credentials(self):
+		server = smtplib.SMTP('smtp.gmail.com:587')  
+		server.starttls()  
+		server.login(self.username, self.password)  
+		server.quit()
 
 	def send_change(self, receiver, old_ip, new_ip):
 
