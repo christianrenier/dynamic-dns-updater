@@ -12,8 +12,8 @@ class Checker:
 
 	def init_list(self):
 
-		# Adds each line in the file to a list
-		# with whitespace removed
+		# Adds each line in the file to a list with
+		# whitespace removed
 		temp_list = open(self.list_location).readlines()
 		for entry in temp_list:
 			self.list.append(entry.strip())
@@ -22,13 +22,12 @@ class Checker:
 
 		"""Returns IP value retrieved from the internet."""
 
-		# Opens a connection to a random site
-		# in the list
+		# Opens a connection to a random site in the list
 		random_site = random.choice(self.list)
 		response = urllib.urlopen(random_site)
 
-		# Sets a cleaned up version of the data
-		# retrieved as the IP value
+		# Sets a cleaned up version of the data retrieved
+		# as the IP value
 		temp_data = response.read()
 		ip = self.clean_response(temp_data)
 
@@ -36,8 +35,7 @@ class Checker:
 
 	def clean_response(self, data_to_clean):
 
-		# Removes whitespace from the data, if any
-		# exists
+		# Removes whitespace from the data, if any exists
 		cleaner_data = data_to_clean.strip()
 
 		# Removes the Pre html element from the data,
