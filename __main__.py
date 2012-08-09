@@ -8,6 +8,14 @@ parser = ConfigParser.SafeConfigParser()
 parser.read(os.path.dirname(__file__) + '/config.cfg')
 write_errors = parser.getboolean('logging', 'log_errors')
 
+# Create error message dictionary
+error_messages = {
+			'read_cache' : 'Problem reading from IP cache.',
+			'check_ip' : 'Problem checking your IP address.',
+			'update_dns' : 'Problem updating your Dynamic DNS.',
+			'write_cache' : 'Problem writing to IP cache.'
+			}
+
 # Create a Logger object to log chosen events
 log_file_location = parser.get('general', 'log_file')
 logger = utils.logger.Logger(log_file_location)

@@ -6,12 +6,6 @@ class Logger:
 
 	def __init__(self, log_location):
 		self.log_location = log_location
-		self.error_messages = {
-			'read_cache' : 'Problem reading from IP cache.',
-			'check_ip' : 'Problem checking your IP address.',
-			'update_dns' : 'Problem updating your Dynamic DNS.',
-			'write_cache' : 'Problem writing to IP cache.'
-		}
 
 	def get_datetime(self):
 		return datetime.datetime.now().ctime()
@@ -21,11 +15,11 @@ class Logger:
 		file.write(log_message)
 		file.close()
 
-	def log_error(self, code):
+	def log_error(self, error_message):
 
 		"""Adds the event of an error occurrence to the log file."""
 		now = self.get_datetime()
-		message = "%s: Error - %s\n" % (now, self.error_messages[code])
+		message = "%s: Error - %s\n" % (now, error_message)
 		self.append_message(message)
 		return
 
