@@ -3,7 +3,7 @@ from email.mime.text import MIMEText
 
 class Mailer:
 
-	"""Sends alerts via e-mail."""
+	"""Sends alerts via email."""
 
 	def __init__(self, username, password):
 		self.username = username
@@ -27,7 +27,7 @@ class Mailer:
 		message['From'] = self.from_address
 		message['To'] = receiver
 		
-		# Connect to Gmail and send e-mail
+		# Connect to Gmail and send email
 		server = smtplib.SMTP('smtp.gmail.com:587')  
 		server.starttls()  
 		server.login(self.username, self.password)  
@@ -44,7 +44,7 @@ class Mailer:
 		message['From'] = self.from_address
 		message['To'] = receiver
 
-		# Connect to Gmail and send e-mail
+		# Connect to Gmail and send email
 		server = smtplib.SMTP('smtp.gmail.com:587')  
 		server.starttls()  
 		server.login(self.username, self.password)  
