@@ -16,7 +16,7 @@ gmail_account = dict(parser.items('gmail_account'))
 write_error = parser.getboolean('logging', 'log_errors')
 write_change = parser.getboolean('logging', 'log_changes')
 write_unchanged = parser.getboolean('logging', 'log_unchanged')
-receiver = parser.get('mailing', 'receiver_address')
+receiver = parser.get('mailing', 'mail_receivers')
 mail_error = parser.getboolean('mailing', 'send_errors')
 mail_change = parser.getboolean('mailing', 'send_changes')
 
