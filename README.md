@@ -96,4 +96,4 @@ You can also send to multiple email addresses by adding them all on one line, se
 Contributing
 ------------
 
-Please contact me with websites that return your public IP address, similar to those in `sitelist.txt`, so they can be added. Also, let me know of any Dynamic DNS providers you would like to see supported, any bugs you find, or any features you would like to see.
+Contact me with websites that return your public IP address, similar to those in `sitelist.txt`, so they can be added. Also, let me know of any Dynamic DNS providers you would like to see supported, bugs you find, or features you want added.
